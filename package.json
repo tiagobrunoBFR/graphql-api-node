@@ -1,0 +1,25 @@
+{
+  "name": "cookup-webservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js -e js,graphql"
+  },
+  "author": "tiago bruno",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.13.1",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.0.0",
+    "graphql-import": "^1.0.2",
+    "jwt-simple": "^0.5.6",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "sequelize-cli": "^5.5.1"
+  }
+}
