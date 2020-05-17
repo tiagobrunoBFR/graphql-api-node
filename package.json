@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon src/server.js -e js,graphql"
   },
   "author": "tiago bruno",
@@ -19,6 +19,7 @@
     "sequelize": "^5.21.9"
   },
   "devDependencies": {
+    "jest": "^26.0.1",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^5.5.1"
   }
