@@ -1,12 +1,4 @@
-require('dotenv').config()
-const { ApolloServer } = require('apollo-server')
+const server = require('./app')
 
-require('./database')
 
-const server = new ApolloServer({
-    modules: [
-        require('./modules/user')
-    ]
-})
-
-server.listen(process.env.APP_SERVICE_PORT)
+server.listen(process.env.SERVICE_PORT)

@@ -1,45 +1,74 @@
-const User = require('../models/User')
+const { User } = require('../models')
 
 module.exports = {
 
     async index() {
-        const users = await User.findAll()
+        try {
 
-        return users
+            const users = await User.findAll()
+
+            return users
+
+        } catch (e) {
+            throw new Error(e)
+        }
     },
 
     async store(request) {
 
-        const { name, email, password } = request.data
+        try {
 
-        return await User.create({ name, email, password })
+            const { name, email, password } = request.data
+
+            return await User.create({ name, email, password })
+
+
+        } catch (e) {
+            throw new Error(e)
+        }
 
     },
 
-    async find(id) {
-        if (!id) return null
-        return await User.findByPk(id)
+    async show(id) {
+
+        try {
+
+            return await User.findByPk(id)
+
+        } catch (e) {
+            throw new Error(e)
+        }
     },
 
     async update(id, { name, email }) {
 
-        return User.update(
-            { name: name, email: email },
-            {
-                where: { id: id },
-                returning: true,
-                plain: true
-            })
+        try {
+
+            const user = await this.show(id)
+            user.name = name
+            user.email = email
+            await user.save()
+            return user
+
+        } catch (e) {
+            throw new Error(e)
+        }
 
     },
 
     async destroy(id) {
 
-        return await User.destroy({
-            where: {
-                id
-            }
-        })
+        try {
+
+            return await User.destroy({
+                where: {
+                    id
+                }
+            })
+
+        } catch (e) {
+            throw new Error(e)
+        }
 
     }
 

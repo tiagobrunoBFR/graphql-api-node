@@ -1,25 +1,11 @@
-const { Model, DataTypes } = require('sequelize')
+module.exports = (sequelize, DataTypes) => {
 
-class User extends Model {
+    const User = sequelize.define("User", {
+        name: DataTypes.STRING,
+        email: DataTypes.STRING,
+        password: DataTypes.STRING
+    })
 
-    static init(sequelize) {
-
-        super.init({
-            name: DataTypes.STRING,
-            email: DataTypes.STRING,
-            password: DataTypes.STRING
-        }, {
-            sequelize
-        })
-
-    }
-
-    // static associate(models) {
-    //     this.belongsTo(models.User, { foreignKey: 'user_id', as:'owner' })
-    // }
-
+    return User
 
 }
-
-
-module.exports = User

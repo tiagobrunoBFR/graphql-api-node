@@ -9,7 +9,7 @@ const resolvers = {
         },
 
         user(_, { id }) {
-            return UserRepository.find(id)
+            return UserRepository.show(id)
         }
     },
 
