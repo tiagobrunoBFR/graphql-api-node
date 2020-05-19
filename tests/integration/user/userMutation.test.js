@@ -11,18 +11,16 @@ describe('Module user all mutations', () => {
     it('should insert a user', async () => {
 
 
-        const user = await factory.create('User', {
-            email: "tiago2@email.com"
-        })
+        const user = await factory.create('User', { email: 'tiago@email.com' })
 
-        expect(user.email).toBe('tiago2@email.com')
+        expect(user.email).toBe('tiago@email.com')
 
     })
 
     it('should update user', async () => {
 
         const request_update = {
-            email: 'update@email.com',
+            email: 'updat2e@email.com',
             name: 'new update'
         }
 

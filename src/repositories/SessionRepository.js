@@ -1,6 +1,6 @@
 const { User } = require('../models')
 
-class AuthenticateRepository {
+class SessionRepository {
 
     async  signin({ email, password }) {
 
@@ -24,4 +24,4 @@ class AuthenticateRepository {
 
 }
 
-module.exports = new AuthenticateRepository()
+module.exports = new SessionRepository()

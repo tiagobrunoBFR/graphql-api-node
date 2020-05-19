@@ -1,5 +1,4 @@
-const AuthenticateRepository = require('../../../src/repositories/AuthenticateRepository')
-const UserRepository = require('../../../src/repositories/UserRepository')
+const SessionRepository = require('../../../src/repositories/SessionRepository')
 const truncate = require('../../utils/truncate')
 const factory = require('../../factories')
 
@@ -21,7 +20,7 @@ describe('Module Athentication', () => {
 
         }
 
-        const response = await AuthenticateRepository.signin(data)
+        const response = await SessionRepository.signin(data)
 
         expect(response).toEqual(401)
 
@@ -29,8 +28,7 @@ describe('Module Athentication', () => {
 
     it('should return jwt token when authenticated', async () => {
 
-        const user = await factory.create('User')
-
+        const user = await factory.create('User', { password: '123456' })
 
         const data = {
 
@@ -39,7 +37,7 @@ describe('Module Athentication', () => {
 
         }
 
-        const response = await AuthenticateRepository.signin(data)
+        const response = await SessionRepository.signin(data)
 
         expect(response).toHaveProperty("token")
 
