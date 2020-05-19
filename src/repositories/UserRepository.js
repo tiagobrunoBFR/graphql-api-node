@@ -1,7 +1,6 @@
 const { User } = require('../models')
-
-module.exports = {
-
+class UserRepository
+ {
     async index() {
         try {
 
@@ -12,7 +11,7 @@ module.exports = {
         } catch (e) {
             throw new Error(e)
         }
-    },
+    }
 
     async store(request) {
 
@@ -27,7 +26,7 @@ module.exports = {
             throw new Error(e)
         }
 
-    },
+    }
 
     async show(id) {
 
@@ -38,7 +37,7 @@ module.exports = {
         } catch (e) {
             throw new Error(e)
         }
-    },
+    }
 
     async update(id, { name, email }) {
 
@@ -54,7 +53,7 @@ module.exports = {
             throw new Error(e)
         }
 
-    },
+    }
 
     async destroy(id) {
 
@@ -72,7 +71,6 @@ module.exports = {
 
     }
 
-
-
-
 }
+
+module.exports = new UserRepository()
