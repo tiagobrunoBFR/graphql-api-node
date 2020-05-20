@@ -9,7 +9,7 @@ describe('Module Athentication', () => {
         await truncate();
     })
 
-    it('Should authenticate with valid credentials', async () => {
+    it('Should authenticate with invalid credentials', async () => {
 
         const user = await factory.create('User')
 
@@ -20,9 +20,14 @@ describe('Module Athentication', () => {
 
         }
 
-        const response = await SessionRepository.signin(data)
+        try {
+            await SessionRepository.signin(data)
 
-        expect(response).toEqual(401)
+        } catch (e) {
+
+            expect(e.message).toBe("Error: Credentials invalid");
+
+        }
 
     })
 

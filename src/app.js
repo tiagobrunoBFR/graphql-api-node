@@ -8,7 +8,8 @@ require('./models')
 
 const server = new ApolloServer({
     modules: [
-        require('./modules/user')
+        require('./modules/user'),
+        require('./modules/session')
     ]
 })
 
