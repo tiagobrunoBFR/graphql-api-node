@@ -9,7 +9,7 @@ class SessionRepository {
             const user = await User.findOne({ where: { email } })
 
             if (!user) {
-                throw new Error('User not found')
+                throw new Error('Credentials invalid')
             }
             if (!(await this.checkPassword(password, user.password))) {
 
