@@ -8,8 +8,7 @@ describe('Module user all mutations', () => {
         return await truncate();
     })
 
-    it('should insert a user', async () => {
-
+    it('should insert a user with name and email valid', async () => {
 
         const user = await factory.create('User', { email: 'tiago@email.com' })
 
@@ -17,7 +16,7 @@ describe('Module user all mutations', () => {
 
     })
 
-    it('should update user', async () => {
+    it('should update a user by id and return the datas updated', async () => {
 
         const request_update = {
             email: 'updat2e@email.com',
@@ -35,7 +34,7 @@ describe('Module user all mutations', () => {
     })
 
 
-    it('should delete user by id', async () => {
+    it('should delete a user by id and return null than find user by id deleted', async () => {
 
         const user_delete = await factory.create('User')
 
@@ -48,5 +47,38 @@ describe('Module user all mutations', () => {
         expect(user).toEqual(null)
 
     })
+
+    it('When the name no is present should return erro Name is required', async () => {
+
+        try {
+            await factory.create('User', {
+                name: ''
+            })
+
+        } catch (e) {
+
+            expect(e.message).toBe("Name is required");
+
+        }
+
+    })
+
+    it('When the e-mail no is present should return erro E-mail invalid', async () => {
+
+        try {
+            await factory.create('User', {
+                email: ''
+            })
+
+        } catch (e) {
+
+            expect(e.message).toBe("E-mail invalid");
+
+        }
+
+    })
+
+
+
 
 })

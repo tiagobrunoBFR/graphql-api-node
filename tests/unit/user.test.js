@@ -1,26 +1,18 @@
 const UserRepository = require('../../src/repositories/UserRepository')
+const factory = require('../factories')
 
 const truncate = require('../utils/truncate')
 const bcrypt = require('bcryptjs')
 
-describe("User", () => {
+describe("Tests unit user", () => {
 
     beforeEach(async () => {
         await truncate();
     })
 
-    it("shuold encrypt user password", async () => {
+    it("should encrypts the user password", async () => {
 
-        const request = {
-            data: {
-                name: 'tiago',
-                email: 'tiago@email.com',
-                password: '123456'
-            }
-
-        }
-
-        const user = await UserRepository.store(request)
+        const user = await factory.create('User', { password: '123456' })
 
 
         const compareHash = await bcrypt.compare("123456", user.password);

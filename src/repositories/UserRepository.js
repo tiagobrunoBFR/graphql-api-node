@@ -1,6 +1,6 @@
 const { User } = require('../models')
-class UserRepository
- {
+const validator = require('../utils/validator')
+class UserRepository {
     async index() {
         try {
 
@@ -18,6 +18,10 @@ class UserRepository
         try {
 
             const { name, email, password } = request.data
+
+            if (!validator.isEmailValid(email)) throw new Error('E-mail invalid')
+
+            if (!name) throw new Error('Name is required!')
 
             return await User.create({ name, email, password })
 
