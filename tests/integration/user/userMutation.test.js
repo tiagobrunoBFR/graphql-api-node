@@ -1,6 +1,7 @@
 const UserRepository = require('../../../src/repositories/UserRepository')
 const truncate = require('../../utils/truncate')
 const factory = require('../../factories')
+const faker = require('faker')
 
 describe('Module user all mutations', () => {
 
@@ -19,8 +20,8 @@ describe('Module user all mutations', () => {
     it('should update a user by id and return the datas updated', async () => {
 
         const request_update = {
-            email: 'updat2e@email.com',
-            name: 'new update'
+            email: faker.internet.email(),
+            name: faker.name.findName()
         }
 
         const user = await factory.create('User')
