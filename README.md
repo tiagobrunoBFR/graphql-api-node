@@ -3,7 +3,7 @@
 ## Description
 - APi to register food recipes
 
-### skils 
+### tools 
 
 - Graphql: Apollo Server
 
