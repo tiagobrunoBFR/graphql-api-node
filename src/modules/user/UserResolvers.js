@@ -4,11 +4,13 @@ const UserRepository = require('../../repositories/UserRepository')
 const resolvers = {
 
     Query: {
-        users() {
+        users(_, args, ctx) {
+            ctx && ctx.verifyToken()
             return UserRepository.index()
         },
 
-        user(_, { id }) {
+        user(_, { id }, ctx) {
+            ctx && ctx.verifyToken()
             return UserRepository.show(id)
         }
     },
@@ -18,14 +20,14 @@ const resolvers = {
             return UserRepository.store(args)
         },
 
-        userUpdate(_, { id, data }) {
-
+        userUpdate(_, { id, data }, ctx) {
+            ctx && ctx.verifyToken()
             return UserRepository.update(id, data)
 
         },
 
-        userDestroy(_, { id }) {
-
+        userDestroy(_, { id }, ctx) {
+            ctx && ctx.verifyToken()
             return UserRepository.destroy(id)
 
         }

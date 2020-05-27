@@ -3,13 +3,16 @@ require('dotenv').config({
 })
 
 const { ApolloServer } = require('apollo-server')
+const context = require('./middleware/ContextMiddleware')
 
 require('./models')
 
 const server = new ApolloServer({
     modules: [
-        require('./modules/user')
-    ]
+        require('./modules/user'),
+        require('./modules/session')
+    ],
+    context
 })
 
 module.exports = server

@@ -1,6 +1,7 @@
 const SessionRepository = require('../../../src/repositories/SessionRepository')
 const truncate = require('../../utils/truncate')
 const factory = require('../../factories')
+const faker = require('faker')
 
 
 describe('Module Athentication', () => {
@@ -9,24 +10,29 @@ describe('Module Athentication', () => {
         await truncate();
     })
 
-    it('Should authenticate with valid credentials', async () => {
+    it('Should authenticate with invalid credentials and return Error: Credentials invalid', async () => {
 
-        const user = await factory.create('User')
+        await factory.create('User')
 
         const data = {
 
-            email: user.email,
-            password: "12345"
+            email: faker.internet.email(),
+            password: faker.internet.password()
 
         }
 
-        const response = await SessionRepository.signin(data)
+        try {
+            await SessionRepository.signin(data)
 
-        expect(response).toEqual(401)
+        } catch (e) {
+
+            expect(e.message).toBe("Error: Credentials invalid");
+
+        }
 
     })
 
-    it('should return jwt token when authenticated', async () => {
+    it('should return jwt token when credential of user is valid', async () => {
 
         const user = await factory.create('User', { password: '123456' })
 
