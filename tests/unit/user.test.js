@@ -1,4 +1,3 @@
-const UserRepository = require('../../src/repositories/UserRepository')
 const factory = require('../factories')
 
 const truncate = require('../utils/truncate')

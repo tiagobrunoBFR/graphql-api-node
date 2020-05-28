@@ -1,7 +1,12 @@
-const UserRepository = require('../../../src/repositories/UserRepository')
 const truncate = require('../../utils/truncate')
 const factory = require('../../factories')
 const faker = require('faker')
+const server = require('../../../src/app')
+const { User_Create, User_Upadate, User_Delete } = require('./ClientUser')
+const { createTestClient } = require('apollo-server-testing');
+const { mutate } = createTestClient(server);
+
+
 
 describe('Module user all mutations', () => {
 
@@ -11,41 +16,46 @@ describe('Module user all mutations', () => {
 
     it('should insert a user with name and email valid', async () => {
 
-        const user = await factory.create('User', { email: 'tiago@email.com' })
+        const name = faker.name.findName();
 
-        expect(user.email).toBe('tiago@email.com')
+        const result = await mutate({
+            mutation: User_Create, variables: {
+                name: name,
+                email: faker.internet.email(),
+                password: faker.internet.password()
+            }
+        });
+        expect(result.data.userCreate).not.toEqual(null);
+
 
     })
 
     it('should update a user by id and return the datas updated', async () => {
 
-        const request_update = {
-            email: faker.internet.email(),
-            name: faker.name.findName()
-        }
 
-        const user = await factory.create('User')
+        const result = await mutate({
+            mutation: User_Upadate, variables: {
+                id: 1,
+                email: faker.internet.email(),
+                name: faker.name.findName()
+            }
+        });
 
-        return await UserRepository.update(user.id, request_update)
-            .then((resp) => {
+        expect(result.email).not.toEqual(null)
 
-                expect(resp.email).toEqual(request_update.email)
-
-            })
     })
 
 
     it('should delete a user by id and return null than find user by id deleted', async () => {
 
-        const user_delete = await factory.create('User')
+        const result = await mutate({
+            mutation: User_Delete, variables: {
+                id: 1,
+            }
+        });
 
-        const user_id = user_delete.id
+        expect(result.data.userDestroy).toBe(true)
 
-        UserRepository.destroy(user_delete.id)
-
-        const user = await UserRepository.show(user_id)
-
-        expect(user).toEqual(null)
 
     })
 
