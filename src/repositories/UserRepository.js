@@ -62,12 +62,13 @@ class UserRepository {
     async destroy(id) {
 
         try {
-
-            return await User.destroy({
+            await User.destroy({
                 where: {
                     id
                 }
             })
+
+            return true
 
         } catch (e) {
             throw new Error(e)
