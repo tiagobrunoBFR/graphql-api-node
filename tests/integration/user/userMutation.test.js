@@ -2,7 +2,7 @@ const truncate = require('../../utils/truncate')
 const factory = require('../../factories')
 const faker = require('faker')
 const server = require('../../../src/app')
-const { User_Create, User_Upadate, User_Delete } = require('./ClientUser')
+const { User_Create, User_Upadate, User_Delete } = require('./UserClient')
 const { createTestClient } = require('apollo-server-testing');
 const { mutate } = createTestClient(server);
 

@@ -2,7 +2,7 @@ const UserRepository = require('../../../src/repositories/UserRepository')
 const truncate = require('../../utils/truncate')
 const factory = require('../../factories')
 const server = require('../../../src/app')
-const { User_ALL, User_Find_ID } = require('./ClientUser')
+const { User_ALL, User_Find_ID } = require('./UserClient')
 
 const { createTestClient } = require('apollo-server-testing');
 const { query } = createTestClient(server);

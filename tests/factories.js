@@ -1,5 +1,5 @@
 const { factory } = require('factory-girl')
-const { User, Ingredient } = require('../src/models')
+const { User } = require('../src/models')
 const faker = require('faker')
 
 factory.define('User', User, {
@@ -8,8 +8,5 @@ factory.define('User', User, {
     password: faker.internet.password()
 })
 
-factory.define('Ingredient', Ingredient, {
-    name: faker.name.findName(),
-})
 
 module.exports = factory

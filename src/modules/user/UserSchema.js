@@ -26,6 +26,10 @@ module.exports = gql`
     
    }
 
+   input UserUpdateInput{
+    name: String
+    email: String
+   }
  
    type Mutation {
 
@@ -34,13 +38,13 @@ module.exports = gql`
       ):User
 
      userUpdate(
-         data:UserInput
+         data:UserUpdateInput
          id:Int
      ):User
 
      userDestroy(
          id: Int
-     ):User
+     ):Boolean
      
    }
 
