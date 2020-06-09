@@ -5,6 +5,7 @@ const path = require('path')
 const resolvers = {
 
     Mutation: {
+
         async  ingredientCreate(_, args) {
 
             const upload_path = path.resolve('uploads', 'ingredient')
