@@ -1,4 +1,4 @@
 const server = require('./app')
 
 
-server.listen(process.env.SERVICE_PORT)
+server.listen(process.env.PORT || process.env.SERVICE_PORT)
