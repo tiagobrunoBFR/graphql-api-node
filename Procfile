@@ -1,3 +1,1 @@
-web: npm run start
-
-sequelize db:migrate
+web: npm run start & sequelize db:migrate
