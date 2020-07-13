@@ -1,7 +1,7 @@
-# Cookup Api
+# Graphql Api
 
 ## Description
-- APi to register food recipes
+- APi for study
 
 ### tools 
 
