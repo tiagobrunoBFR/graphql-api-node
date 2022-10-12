@@ -13,7 +13,7 @@
   "author": "tiago bruno",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.14.2",
+    "apollo-server": "^2.25.4",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "graphql": "^15.0.0",
